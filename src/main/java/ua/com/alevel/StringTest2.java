@@ -1,9 +1,10 @@
 package ua.com.alevel;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,6 +27,20 @@ public class StringTest2 {
     char[] chars = s.toCharArray();
 
     public void run() {
+
+        Character[] charObjectArray = ArrayUtils.toObject(chars);
+
+        String ss = Arrays
+                .asList(charObjectArray).
+                        stream()
+                .distinct()
+                .map(character -> character.toString())
+                .map(character -> character.toUpperCase())
+                .collect(Collectors.joining());
+
+        System.out.println("ss = " + ss);
+
+
         Map<Character, Integer> map = new HashMap<>();
         for (char aChar : chars) {
             if (map.get(aChar) == null) {
